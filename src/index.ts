@@ -1,8 +1,43 @@
-function calculateTax(income: number, taxYear: number = 2022) : number {
-    if (taxYear < 2200) {
-        return income * 1.2;
+type Employee = {
+    readonly id: number;
+    name: string;
+    retire: (date: Date) => void;
+}
+let employee: Employee= {
+    id: 1,
+    name: "rafael",
+    retire: (date: Date) => console.log(date),
+};
+
+function kgtoLbs(weight: number | string) : number {
+    if (typeof weight === 'number') {
+        return weight * 2.2;
+    } else {
+        return parseInt(weight) * 2.2
     }
-    return income * 1.3;
+};
+
+type Draggable = {
+    drag: () => void
 }
 
-calculateTax(10_000, 2022);
+type Resizable = {
+    resize: () => void
+};
+
+type UIWidget = Draggable & Resizable;
+
+let UImouse: UIWidget = {
+    drag: () => {},
+    resize: () => {}
+};
+
+UImouse.drag();
+
+type Customer = {
+    birthday: Date
+};
+
+function getCustomer(id: Number): Customer | null {
+    return id === 0 ? null : { birthday: new Date() };
+}
